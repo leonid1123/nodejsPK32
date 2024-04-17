@@ -1,0 +1,9 @@
+{
+    "name": "pk32express",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap": "^5.3.3",
+        "express": "^4.18.2",
+        "hbs": "^4.2.0"
+    }
+}
