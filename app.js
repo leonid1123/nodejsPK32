@@ -1,10 +1,29 @@
+//------
 const express = require("express");
+const mysql = require("mysql2");
+//------
 const app = express();
 const urlencodedParser = express.urlencoded({ extended: false });
+const pool = mysql.createPool({
+    connectionLimit: 5,
+    host: "localhost",
+    user: "pk32node",
+    password: "123456", 
+    database: "cars"
+});
+//----
 app.set("view engine", "hbs");
-const mylist = [];
+//-----
+var mylist = [];
 let totalPrice = 0;
+//-----
 app.get("/", function (_, response) {
+    pool.query("SELECT `name`, `price`, `quantity` FROM `list`", function(err, results) {
+        if(err) console.log(err);
+        console.log(results);
+        mylist = results;
+        
+    });
     response.render("list.hbs", {
         products: mylist,
         total: 0
